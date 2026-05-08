@@ -1,6 +1,6 @@
 {
   "base": {
-    "project": "Telegram_14",
+    "project": "Home_15",
     "environment": "Jenkins",
     "comment": "Автотесты DemoQA",
     "reportLink": "http://jenkins.autotests.cloud/job/Telegram_14/lastBuild/allure/",
@@ -9,8 +9,8 @@
     "enableChart": true
   },
   "telegram": {
-    "token": "8640787322:AAFT9CIJoceZs2_yd9MfF8l0LbD1oWVhSpI",
-    "chat": "-1003843306241",
+    "token": "8403483068:AAEY3A4X3XAzotEnGyO1cvtL2alli3c70mk",
+    "chat": "-5009755559",
     "replyTo": ""
   }
 }
