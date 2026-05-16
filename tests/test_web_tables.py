@@ -1,40 +1,15 @@
 import allure
-from selene import browser, have
+import json
+from pages.web_tables_page import WebTablesPage
 
+def load_web_user():
+    with open("data/web_user.json", "r", encoding="utf-8") as f:
+        return json.load(f)
 
-@allure.title("Успешное добавление новой записи в Web Tables")
-def test_add_new_record_in_web_tables():
-    browser.open("https://demoqa.com/webtables")
-
-    browser.driver.execute_script("document.querySelector('#fixedban')?.remove()")
-    browser.driver.execute_script("document.querySelector('footer')?.remove()")
-
-    browser.element("#addNewRecordButton").click()
-
-    browser.element("#firstName").type("Leonid")
-    browser.element("#lastName").type("Chaliy")
-    browser.element("#userEmail").type("leonid@example.com")
-    browser.element("#age").type("25")
-    browser.element("#salary").type("150000")
-    browser.element("#department").type("QA")
-    browser.element("#submit").click()
-
-    browser.element(".web-tables-wrapper").should(have.text("Leonid"))
-    browser.element(".web-tables-wrapper").should(have.text("Chaliy"))
-    browser.element(".web-tables-wrapper").should(have.text("leonid@example.com"))
-    browser.element(".web-tables-wrapper").should(have.text("25"))
-    browser.element(".web-tables-wrapper").should(have.text("150000"))
-    browser.element(".web-tables-wrapper").should(have.text("QA"))
-
-
-@allure.title("Успешный поиск записи в Web Tables")
-def test_search_record_in_web_tables():
-    browser.open("https://demoqa.com/webtables")
-
-    browser.driver.execute_script("document.querySelector('#fixedban')?.remove()")
-    browser.driver.execute_script("document.querySelector('footer')?.remove()")
-
-    browser.element("#searchBox").type("Cierra")
-
-    browser.element(".web-tables-wrapper").should(have.text("Cierra"))
-    browser.element(".web-tables-wrapper").should(have.text("Vega"))
+@allure.title("Добавление новой записи в Web Tables")
+def test_add_new_record():
+    user = load_web_user()
+    page = WebTablesPage()
+    page.open()
+    page.add_new_record(user)
+    page.assert_record_exists(user["first_name"], user["last_name"])

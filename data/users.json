@@ -1,0 +1,16 @@
+{
+  "student": {
+    "first_name": "Leo",
+    "last_name": "Gromov",
+    "email": "Leo@example.com",
+    "gender": "Male",
+    "mobile": "1234567890",
+    "date_of_birth": "28 Aug 2004",
+    "subjects": ["Maths", "Physics"],
+    "hobbies": ["Sports", "Music"],
+    "picture": "photo.jpg",
+    "address": "123 Main St",
+    "state": "NCR",
+    "city": "Delhi"
+  }
+}

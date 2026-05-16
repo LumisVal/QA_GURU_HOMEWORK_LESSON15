@@ -2,11 +2,13 @@ import os
 
 from selene import browser, have, command
 
+from conf.config import BASE_URL
+
 
 class RegistrationPage:
 
     def open(self):
-        browser.open("https://demoqa.com/automation-practice-form")
+        browser.open(f"{BASE_URL}/automation-practice-form")
         browser.driver.execute_script("document.querySelector('#fixedban')?.remove()")
         browser.driver.execute_script("document.querySelector('footer')?.remove()")
         return self
@@ -128,4 +130,8 @@ class RegistrationPage:
         browser.element('.table-responsive').should(have.text(student.state))
         browser.element('.table-responsive').should(have.text(student.city))
 
+        return self
+    def should_have_gender_selected(self, expected_gender: str):
+        from selene import browser, have
+        browser.element(f"//input[@value='{expected_gender}']").should(have.attribute('checked'))
         return self

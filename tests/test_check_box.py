@@ -1,21 +1,10 @@
 import allure
-from selene import browser, have
+from pages.check_box_page import CheckBoxPage
 
-
-@allure.title("Успешный выбор checkbox Home")
-def test_select_desktop_checkbox():
-    browser.open("https://demoqa.com/checkbox")
-
-    browser.driver.execute_script("document.querySelector('#fixedban')?.remove()")
-    browser.driver.execute_script("document.querySelector('footer')?.remove()")
-
-    browser.element("h1").should(have.exact_text("Check Box"))
-
-    # раскрываем Home
-    browser.element(".rc-tree-switcher").click()
-
-    # выбираем чекбокс
-    browser.element(".rc-tree-checkbox").click()
-
-    # проверка результата
-    browser.element(".text-success").should(have.text("home"))
+@allure.title("Выбор чекбокса Home")
+def test_check_home():
+    page = CheckBoxPage()
+    page.open()
+    page.expand_all_folders()
+    page.check_option("Home")
+    page.assert_option_checked("Home")
